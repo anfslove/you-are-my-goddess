@@ -1,3 +1,9 @@
-<h1>
-  {{title}}
-</h1>
+<h1>{{title}}</h1>
+<h2>{{goddess.name}} details!</h2>
+<div>
+  <label>id: </label>{{goddess.id}}
+</div>
+<div>
+  <label>name: </label>
+  <input [(ngModel)]="goddess.name" placeholder="name">
+</div>
