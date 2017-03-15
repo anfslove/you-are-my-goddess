@@ -6,11 +6,4 @@
   </li>
 </ul>
 
-<div *ngIf="selectedGoddess">
-  <h2>{{selectedGoddess.name}} details!</h2>
-  <div><label>id:</label>{{selectedGoddess.id}}</div>
-  <div>
-    <label>name:</label>
-    <input [(ngModel)]="selectedGoddess.name" placeholder="name"/>
-  </div>
-</div>
+<my-goddess-detail [goddess]="selectedGoddess"></my-goddess-detail>
