@@ -1,9 +1,16 @@
 <h1>{{title}}</h1>
-<h2>{{goddess.name}} details!</h2>
-<div>
-  <label>id: </label>{{goddess.id}}
-</div>
-<div>
-  <label>name: </label>
-  <input [(ngModel)]="goddess.name" placeholder="name">
+<h2>My Goddesses</h2>
+<ul class="goddesses">
+  <li *ngFor="let goddess of goddesses" [class.selected]="goddess === selectedGoddess" (click)="onSelect(goddess)">
+    <span class="badge">{{goddess.id}}</span> {{goddess.name}}
+  </li>
+</ul>
+
+<div *ngIf="selectedGoddess">
+  <h2>{{selectedGoddess.name}} details!</h2>
+  <div><label>id:</label>{{selectedGoddess.id}}</div>
+  <div>
+    <label>name:</label>
+    <input [(ngModel)]="selectedGoddess.name" placeholder="name"/>
+  </div>
 </div>
