@@ -1,27 +1,34 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { Goddess } from './goddess';
-
-const GODDESSES: Goddess[] = [
-  {id: 1, name: 'Yan Jingjing'},
-  {id: 2, name: 'Tang Wei'},
-  {id: 3, name: 'Tong Liya'},
-  {id: 4, name: 'Sun Li'}
-];
+import { GoddessService } from './goddess.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers: [GoddessService]
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit {
+  
   title = 'You Are My Goddess';
-  goddesses = GODDESSES;
+  goddesses: Goddess[];
   selectedGoddess: Goddess;
+
+  constructor(private goddessService: GoddessService) { }
+
+
+  getGoddesses(): void {
+      this.goddessService.getGoddesses().then(goddesses => this.goddesses = goddesses);
+  }
+
+  ngOnInit(): void {
+    this.getGoddesses();
+  }
 
   onSelect(goddess: Goddess): void {
     this.selectedGoddess = goddess;
   }
+ 
 }
-
